@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the repository
+                checkout scm
+            }
+        }
+        stage('Build and Run Docker') {
+            steps {
+                // Make sure the script is executable
+                sh 'chmod +x build_and_run.sh'
+
+                // Execute the shell script
+                sh './build_and_run.sh'
+            }
+        }
+    }
+}
+
